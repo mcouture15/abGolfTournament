@@ -29,12 +29,14 @@ header {
 	text-align: right;
 	padding: 20px;
 	z-index: 1;
+	font-size: 14px;
 }
 	ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		color: #ccc;
+		margin-right: 40px;
 	}
 
 		li {
