@@ -1,20 +1,59 @@
-html,body { 
-	font-family: 'Verdana', sans-serif;
+* {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
 }
 
-html { 
-  	background: url(../images/ab.jpg) no-repeat center center fixed; 
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
+html {
+	font-family: 'Roboto', sans-serif;
+}
+
+html,body {
+	margin: 0;
+	height: 100%;
 }
 
 h2 {
-	text-align:Right;
-	margin-top:5%;
-	color: White;
+	text-align: right;
 	font-size: 20px;
 }
+a {
+	text-decoration: none;
+	color: #ccc;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	background-color: rgba(0,0,0,0.7);
+	width: 100%;
+	text-align: right;
+	padding: 20px;
+}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		color: #ccc;
+	}
+
+		li {
+			display: inline-block;
+			margin: 0 3px;
+		}
 
 
+main {
+	height: 100%;
+	width: 100%;
+}
+	#home {
+		background: url('../images/hawkridge.jpg') no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+
+	main > * {
+		height: 100%;
+	}
