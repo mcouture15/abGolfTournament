@@ -14,8 +14,6 @@ $(function() {
 			currency: 'cad',
 			token: function(token) {
 				// Use the token to create the charge with a server-side script.
-				// You can access the token ID with `token.id`
-				console.log(token);
 				chargeCard(token);
 			}
 		});
@@ -32,10 +30,11 @@ $(function() {
 			email: token.email
 		}, {
 			success: function(res) {
-				alert('success');
+				toastr.success('Purchase Success! Here is your Transaction ID: ' + res);
 			},
 			error: function(err) {
-				console.log('err=', err);
+				toastr.error('An error occured, please try again');
+				console.error('cloud_err=', err);
 			}
 		});
 	}
@@ -48,10 +47,31 @@ $(function() {
 			handler.open({
 				name: 'AB Memorial Golf Tournament',
 				description: '1 Ticket',
-				amount: 4500
+				amount: 4500 + 165
 			});
 			e.preventDefault();
 		});
+	}
+
+	function setupToastr() {
+		toastr.options = {
+			'closeButton': true,
+			'debug': false,
+			'newestOnTop': false,
+			'progressBar': false,
+			'positionClass': 'toast-top-center',
+			'preventDuplicates': false,
+			'onclick': null,
+			'showDuration': '300',
+			'hideDuration': '1000',
+			'timeOut': '0',
+			'extendedTimeOut': '0',
+			'showEasing': 'swing',
+			'hideEasing': 'linear',
+			'showMethod': 'fadeIn',
+			'hideMethod': 'fadeOut',
+			'tapToDismiss': false
+		}
 	}
 
 	function goToSection(e) {
@@ -65,5 +85,6 @@ $(function() {
 	}
 	setupClicks();
 	setupStripe();
+	setupToastr();
 	console.log('ready');
 });
