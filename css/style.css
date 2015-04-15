@@ -37,12 +37,12 @@ header {
 	z-index: 1;
 	font-size: 14px;
 }
-	#nav_bar {
+	#navBar {
 		color: #ccc;
 		margin-right: 40px;
 	}
 
-		#nav_bar li {
+		#navBar li {
 			display: inline-block;
 			margin: 0 3px;
 		}
@@ -58,7 +58,7 @@ main {
 		height: 100%;
 	}
 
-		#home > * {
+		#home > div {
 			height: 100%;
 			width: 100%
 		}
@@ -79,6 +79,7 @@ main {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 100%;
+				margin-top: 150px;
 			}
 
 	#sponsors {
