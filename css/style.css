@@ -48,6 +48,15 @@ header {
 			display: inline-block;
 			margin: 0 3px;
 		}
+		#navBar a {
+			-webkit-transition: 0.2s color linear;
+			-moz-transition: 0.2s color linear;
+			transition: 0.2s color linear;
+		}
+
+		#navBar a:hover {
+			color: #27ae60;
+		}
 
 main {
 	height: 100%;
@@ -96,6 +105,12 @@ main {
 					cursor: pointer;
 					margin-top: 25px;
 					color: #fff;
+				}
+
+				#homeContent button {
+					-webkit-transition: 0.2s background-color linear;
+					-moz-transition: 0.2s background-color linear;
+					transition: 0.2s background-color linear;
 				}
 
 				#homeContent button:hover {
