@@ -42,15 +42,61 @@ $(function() {
 	function setupClicks() {
 		$('header a').on('click', goToSection);
 
-		$('#buyTicket').on('click', function(e) {
+		$('#buyTicket').on('click', function() {
 			// Open Checkout with further options
+			$('#purchaseOverlay').show().addClass('active');
+		});
+
+		$('#purchaseClose').on('click', function() {
+			$('#purchaseOverlay').removeClass('active');
+		});
+
+		$('#purchaseOverlay').on(
+			'webkitTransitionEnd ' +
+			'otransitionend ' +
+			'oTransitionEnd ' +
+			'msTransitionEnd ' +
+			'transitionend'
+		, function() {
+			$('#purchaseOverlay').hide();
+		});
+
+		$('#purchase').on('click', function(e) {
 			handler.open({
 				name: 'AB Memorial Golf Tournament',
 				description: '1 Ticket',
 				amount: 4500 + 165
 			});
 			e.preventDefault();
+			setTimeout(function() {
+				$('#purchaseClose').trigger('click');
+			}, 200);
 		});
+
+		$('.quantityChange').on('click', function(e) {
+			if (e.target.classList.contains('disabled') || e.target.parentElement.classList.contains('disabled')) return;
+			var val = parseInt($('#quantity p').text());
+
+			if (e.target.id == 'increaseQuantity') {
+				plus(val);
+			} else if (e.target.id == 'decreaseQuantity') {
+				minus(val);
+			} else if (e.target.children[0].id == 'increaseQuantity') {
+				plus(val);
+			} else {
+				minus(val);
+			}
+		});
+	}
+
+	function plus(val) {
+		$('#quantity p').text(val + 1);
+		if (val == 1) $('.quantityChange:first-child').removeClass('disabled');
+	}
+
+	function minus(val) {
+		$('#quantity p').text(val - 1);
+		if (val == 2) $('.quantityChange:first-child').addClass('disabled');
 	}
 
 	function setupToastr() {

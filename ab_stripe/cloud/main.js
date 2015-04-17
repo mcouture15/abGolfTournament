@@ -12,8 +12,9 @@ function stripe_charge(req, res) {
 	Stripe.Charges.create({
 		// amount: 100 * 45 * req.params.quantity, // $10 expressed in cents
 		amount: 100 * (45 + 1.65) * quantity,
+		currency: 'cad',
 		source: req.params.token, // the token id should be sent from the client
-		currency: 'cad'
+		receipt_email: req.params.email
 	},{
 		success: function(httpResponse) {
 			var transaction = new Transaction();
