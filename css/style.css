@@ -386,3 +386,6 @@ footer {
 	background: rgba(0,0,0,0.5);
 }
 
+.noScroll {
+	overflow: hidden;
+}

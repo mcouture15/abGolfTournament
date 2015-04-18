@@ -50,6 +50,7 @@ $(function() {
 		$('#buyTicket').on('click', function() {
 			// Open Checkout with further options
 			$('#purchaseOverlay').show().addClass('active');
+			$('body').addClass('noScroll');
 		});
 
 		$('#purchaseClose').on('click', function() {
@@ -64,6 +65,7 @@ $(function() {
 			'transitionend'
 		, function() {
 			$('#purchaseOverlay').hide();
+			$('body').removeClass('noScroll');
 		});
 
 		$('#purchase').on('click', function(e) {
