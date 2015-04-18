@@ -8,19 +8,35 @@ Parse.Cloud.define('charge', function(req, res) {
 });
 
 function stripe_charge(req, res) {
-	var quantity = req.params.quantity || 1;
-	var amount = req.params.amount || 4500;
+	var opts = {
+		amount: req.params.amount || 4500,
+		email: req.params.email,
+		firstName: req.params.firstName,
+		lastName: req.params.lastName,
+		quantity: req.params.quantity || 1,
+		token: req.params.token
+	}
+
 	Stripe.Charges.create({
-		amount: amount,
+		amount: opts.amount,
 		currency: 'cad',
-		source: req.params.token, // the token id should be sent from the client
-		receipt_email: req.params.email
+		source: opts.token, // the token id should be sent from the client
+		receipt_email: opts.email,
+		metadata: {
+			amount: opts.amount,
+			email: opts.email,
+			firstName: opts.firstName,
+			lastName: opts.lastName,
+			quantity: opts.quantity,
+		}
 	},{
 		success: function(httpResponse) {
 			var transaction = new Transaction();
 			transaction.save({
-				quantity: quantity,
-				email: req.params.email
+				quantity: opts.quantity,
+				email: opts.email,
+				firstName: opts.firstName,
+				lastName: opts.lastName
 			}, {
 				success: function(transaction) {
 					res.success(transaction.id);
@@ -32,8 +48,10 @@ function stripe_charge(req, res) {
 					console.log('ERROR', err);
 					var t = new Transaction();
 					transaction.save({
-						quantity: parseInt(quantity),
-						email: req.params.email
+						quantity: parseInt(opts.quantity),
+						email: opts.email,
+						firstName: opts.firstName,
+						lastName: opts.lastName
 					}), {
 						success: function(httpRequest) {
 							console.log('Second Attempt Successful');
