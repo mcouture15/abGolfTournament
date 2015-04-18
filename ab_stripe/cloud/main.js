@@ -9,9 +9,9 @@ Parse.Cloud.define('charge', function(req, res) {
 
 function stripe_charge(req, res) {
 	var quantity = req.params.quantity || 1;
+	var amount = req.params.amount || 4500;
 	Stripe.Charges.create({
-		// amount: 100 * 45 * req.params.quantity, // $10 expressed in cents
-		amount: 100 * (45 + 1.65) * quantity,
+		amount: amount,
 		currency: 'cad',
 		source: req.params.token, // the token id should be sent from the client
 		receipt_email: req.params.email
@@ -26,12 +26,28 @@ function stripe_charge(req, res) {
 					res.success(transaction.id);
 				},
 				error: function(transaction, err) {
-					res.error(err);
+					// parse errored but transaction was success
+					res.success(transaction.id);
+
+					console.log('ERROR', err);
+					var t = new Transaction();
+					transaction.save({
+						quantity: parseInt(quantity),
+						email: req.params.email
+					}), {
+						success: function(httpRequest) {
+							console.log('Second Attempt Successful');
+						},
+						error: function(httpRequest) {
+							console.error('Second Attempt FAILED', transaction.id);
+						}
+					};
 				}
 			});
 		},
 		error: function(httpResponse) {
-			res.error('Uh oh, something went wrong');
+			console.log('FOO', httpResponse);
+			res.error('Uh oh, something went wrong', httpResponse);
 		}
 	});
 }

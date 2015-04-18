@@ -3,19 +3,17 @@ $(function() {
 		'Yfj9RlamVjaC4pzsmlxpgJDubjrclBF2c1euYJRs',
 		'i1uz71A2H7Vi9oFOWNMS0q6M1YisFLdA90eEFsFT'
 	);
-	var handler;
+	var amount,
+			handler,
+			q;
 
 	function setupStripe() {
-
 		handler = StripeCheckout.configure({
 			key: 'pk_test_TLxz9k2Ooxu3rUL0uNY8ljrH',
 			image: '/img/documentation/checkout/marketplace.png',
 			allowRememberMe: false,
 			currency: 'cad',
-			token: function(token) {
-				// Use the token to create the charge with a server-side script.
-				chargeCard(token);
-			}
+			token: chargeCard
 		});
 
 		// Close Checkout on page navigation
@@ -25,9 +23,12 @@ $(function() {
 	}
 
 	function chargeCard(token) {
+		// Use the token to create the charge with a server-side script.
 		Parse.Cloud.run('charge', {
-			token: token.id,
-			email: token.email
+			amount: amount,
+			email: token.email,
+			quantity: q,
+			token: token.id
 		}, {
 			success: function(res) {
 				toastr.success('Purchase Success! Here is your Transaction ID: ' + res);
@@ -62,10 +63,12 @@ $(function() {
 		});
 
 		$('#purchase').on('click', function(e) {
+			q = parseInt($('#quantity p').text());
+			amount = Math.round(100 * ((45 + 1.35)*q + 0.3));
 			handler.open({
 				name: 'AB Memorial Golf Tournament',
-				description: '1 Ticket',
-				amount: 4500 + 165
+				description: q + ' Ticket' + (q > 1 ? 's' : '') + ' @ $45 each + Service Charge',
+				amount: amount
 			});
 			e.preventDefault();
 			setTimeout(function() {
