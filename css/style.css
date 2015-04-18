@@ -377,5 +377,12 @@ footer {
 	box-shadow: none !important;
 }
 
-
+#spinner {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+	color: #fff;
+	background: rgba(0,0,0,0.5);
+}
 

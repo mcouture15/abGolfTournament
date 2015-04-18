@@ -23,6 +23,8 @@ $(function() {
 	}
 
 	function chargeCard(token) {
+		// activate spinner
+		$('#spinner').removeClass('hidden').spin();
 		// Use the token to create the charge with a server-side script.
 		Parse.Cloud.run('charge', {
 			amount: amount,
@@ -31,9 +33,11 @@ $(function() {
 			token: token.id
 		}, {
 			success: function(res) {
+				$('#spinner').addClass('hidden').spin(false);
 				toastr.success('Purchase Success! Here is your Transaction ID: ' + res);
 			},
 			error: function(err) {
+				$('#spinner').addClass('hidden').spin(false);
 				toastr.error('An error occured, please try again');
 				console.error('cloud_err=', err);
 			}
