@@ -154,15 +154,27 @@ $(function() {
 
 	function goToSection(e) {
 		e.preventDefault();
-		$('html, body').animate(
-			{
-				scrollTop: $('#' + $(e.target).attr('label-for')).offset().top
-			},
+		$('html, body').animate({
+			scrollTop: $('#' + $(e.target).attr('label-for')).offset().top
+		},
 			'slow'
 		);
 	}
+
+	function setupCarousel() {
+		myScroll = new IScroll('#wrapper', {
+			scrollX: true,
+			scrollY: false,
+			momentum: false,
+			snap: true,
+			snapSpeed: 400,
+			keyBindings: true
+		});
+	}
+
 	setupClicks();
 	setupStripe();
 	setupToastr();
+	setupCarousel();
 	console.log('ready');
 });
