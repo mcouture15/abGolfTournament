@@ -4,10 +4,13 @@ $(function() {
 		'i1uz71A2H7Vi9oFOWNMS0q6M1YisFLdA90eEFsFT'
 	);
 	var amount,
+			carouselInt,
 			firstName,
 			handler,
 			lastName,
-			q;
+			myScroll,
+			q,
+			t;
 
 	function setupStripe() {
 		handler = StripeCheckout.configure({
@@ -65,6 +68,10 @@ $(function() {
 
 		$('#purchase').on('click', purchaseClicked);
 
+		$('html, body').keyup(function(e) {
+			if (e.keyCode == 27) $('#purchaseClose').trigger('click');
+		});
+
 		$('.quantityChange').on('click', function(e) {
 			if (e.target.classList.contains('disabled') || e.target.parentElement.classList.contains('disabled')) return;
 			var val = parseInt($('#quantity p').text());
@@ -78,6 +85,17 @@ $(function() {
 			} else {
 				minus(val);
 			}
+		});
+
+		$('.scroll').on('click', function() {
+			clearTimeout(t);
+			clearInterval(carouselInt);
+			if ($(this).hasClass('scrollLeft')) myScroll.prev();
+			else myScroll.next();
+
+			t = setTimeout(function() {
+				carouselInt = setInterval(nextCara, 5000);
+			}, 10000);
 		});
 	}
 
@@ -161,6 +179,10 @@ $(function() {
 		);
 	}
 
+	function nextCara() {
+		myScroll.next();
+	}
+
 	function setupCarousel() {
 		myScroll = new IScroll('#wrapper', {
 			scrollX: true,
@@ -170,6 +192,8 @@ $(function() {
 			snapSpeed: 400,
 			keyBindings: true
 		});
+
+		carouselInt = setInterval(nextCara, 5000);
 	}
 
 	setupClicks();

@@ -100,8 +100,6 @@ main {
 				-moz-background-size: cover;
 				-o-background-size: cover;
 				background-size: cover;
-				/*filter: blur(4px);
-				-webkit-filter: blur(4px);*/
 			}
 			#homeContent {
 				position: relative;
@@ -805,7 +803,7 @@ footer {
 		position: absolute;
 		z-index: 1;
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
-		width: 400%;
+		width: 4100%;
 		height: 100%;
 		-webkit-transform: translateZ(0);
 		-moz-transform: translateZ(0);
@@ -826,21 +824,79 @@ footer {
 	}
 
 	.slide {
-		width: 25%;
+		width: 2.4390244%;
 		height: 100%;
 		float: left;
 		position: relative;
 	}
 
-	.painting {
+	.picture {
 		height: 100%;
-		/*PROGRAMATICALLY SET WIDTH*/
-		/*width: 358px;*/
 		margin: 0 auto;
 		position: absolute;
 		left: 0;
 		right: 0;
-		/*background-image: url('../images/AB2014/img1.jpg');
-		background-size: contain;
-		background-repeat: no-repeat;*/
 	}
+
+
+.scroll {
+	height: 100%;
+	width: 5%;
+	background: #444;
+	z-index: 1000000;
+	position: relative;
+	cursor: pointer;
+}
+.scroll:hover {
+	background: #333;
+}
+
+.scroll:hover .arrowShiftLeft {
+	border-right-color: #333;
+}
+
+.scroll:hover .arrowShiftRight {
+	border-left-color: #333;
+}
+
+
+.scroll.scrollLeft {
+	float: left;
+}
+
+.scroll.scrollRight {
+	float: right;
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-radius: 20px;
+
+}
+.arrowLeft {
+	border-right: 30px solid #eee;
+}
+
+.arrowShiftLeft {
+	border-right: 30px solid #444;
+	right: -5px;
+}
+
+.arrowRight {
+	border-left: 30px solid #eee;
+}
+
+.arrowShiftRight {
+	border-left: 30px solid #444;
+	left: -5px;
+}
+
