@@ -154,6 +154,24 @@ main {
 		text-align: center;
 	}
 
+	#about p {
+		text-align: center;
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+		color: gray;
+		line-height: 150%;
+	}
+
+	#contact p {
+		text-align: center;
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+		color: gray;
+		line-height: 150%;
+	}
+
 footer {
 	background-color: rgba(0,0,0,0.7);
 	width: 100%;
