@@ -70,6 +70,7 @@ $(function() {
 
 		$('html, body').keyup(function(e) {
 			if (e.keyCode == 27) $('#purchaseClose').trigger('click');
+			else if (e.keyCode == 37 || e.keyCode == 39) restartTimers();
 		});
 
 		$('.quantityChange').on('click', function(e) {
@@ -88,15 +89,19 @@ $(function() {
 		});
 
 		$('.scroll').on('click', function() {
-			clearTimeout(t);
-			clearInterval(carouselInt);
+			restartTimers();
 			if ($(this).hasClass('scrollLeft')) myScroll.prev();
 			else myScroll.next();
-
-			t = setTimeout(function() {
-				carouselInt = setInterval(nextCara, 5000);
-			}, 10000);
 		});
+	}
+
+	function restartTimers() {
+		clearTimeout(t);
+		clearInterval(carouselInt);
+
+		t = setTimeout(function() {
+			carouselInt = setInterval(nextCara, 5000);
+		}, 10000);
 	}
 
 	function purchaseClicked(e) {
