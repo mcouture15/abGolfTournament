@@ -86,6 +86,7 @@ main {
 	}
 	#home {
 		height: 100%;
+		margin-top: 0;
 	}
 
 		#home > div {

@@ -189,6 +189,7 @@ $(function() {
 	}
 
 	function setupCarousel() {
+		$("#viewport").height($("body").height() * .85 - $("#gallery h1").outerHeight(true));
 		myScroll = new IScroll('#wrapper', {
 			scrollX: true,
 			scrollY: false,
@@ -197,7 +198,6 @@ $(function() {
 			snapSpeed: 400,
 			keyBindings: true
 		});
-
 		carouselInt = setInterval(nextCara, 5000);
 	}
 
@@ -205,5 +205,6 @@ $(function() {
 	setupStripe();
 	setupToastr();
 	setupCarousel();
+
 	console.log('ready');
 });
