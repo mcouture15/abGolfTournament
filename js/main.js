@@ -4,13 +4,13 @@ $(function() {
 		'i1uz71A2H7Vi9oFOWNMS0q6M1YisFLdA90eEFsFT'
 	);
 	var amount,
-			carouselInt,
-			firstName,
-			handler,
-			lastName,
-			myScroll,
-			q,
-			t;
+		carouselInt,
+		firstName,
+		handler,
+		lastName,
+		myScroll,
+		q,
+		t;
 
 	function setupStripe() {
 		handler = StripeCheckout.configure({
@@ -75,16 +75,31 @@ $(function() {
 
 		$('.quantityChange').on('click', function(e) {
 			if (e.target.classList.contains('disabled') || e.target.parentElement.classList.contains('disabled')) return;
-			var val = parseInt($('#quantity p').text());
 
-			if (e.target.id == 'increaseQuantity') {
-				plus(val);
-			} else if (e.target.id == 'decreaseQuantity') {
-				minus(val);
-			} else if (e.target.children[0].id == 'increaseQuantity') {
-				plus(val);
+			if (e.target.id == 'increaseGolf') {
+				var val = parseInt($('#golf p').text());
+				plus('#golf', val);
+			} else if (e.target.id == 'decreaseGolf') {
+				var val = parseInt($('#golf p').text());
+				minus('#golf', val);
+			} else if (e.target.id == 'increaseNoGolf') {
+				var val = parseInt($('#noGolf p').text());
+				plus('#noGolf', val);
+			} else if (e.target.id == 'decreaseNoGolf') {
+				var val = parseInt($('#noGolf p').text());
+				minus('#noGolf', val);
+			} else if (e.target.children[0].id == 'increaseGolf') {
+				var val = parseInt($('#golf p').text());
+				plus('#golf', val);
+			} else if (e.target.children[0].id == 'decreaseGolf') {
+				var val = parseInt($('#golf p').text());
+				minus('#golf', val);
+			} else if (e.target.children[0].id == 'increaseNoGolf') {
+				var val = parseInt($('#noGolf p').text());
+				plus('#noGolf', val);
 			} else {
-				minus(val);
+				var val = parseInt($('#noGolf p').text());
+				minus('#noGolf', val);
 			}
 		});
 
@@ -133,14 +148,14 @@ $(function() {
 			}
 	}
 
-	function plus(val) {
-		$('#quantity p').text(val + 1);
-		if (val == 1) $('.quantityChange:first-child').removeClass('disabled');
+	function plus(e, val) {
+		$(e + ' p').text(val + 1);
+		if (val == 1) $(e).prev().removeClass('disabled');
 	}
 
-	function minus(val) {
-		$('#quantity p').text(val - 1);
-		if (val == 2) $('.quantityChange:first-child').addClass('disabled');
+	function minus(e, val) {
+		$(e + ' p').text(val - 1);
+		if (val == 2) $(e).prev().addClass('disabled');
 	}
 
 	function validateFields() {

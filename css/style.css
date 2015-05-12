@@ -204,7 +204,7 @@ footer {
 }
 
 	#purchaseContent {
-		width: 300px;
+		width: 400px;
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -212,7 +212,7 @@ footer {
 		text-align: center;
 		padding: 20px 40px;
 		background-color: #eee;
-		top: 200px;
+		top: 100px;
 		border-radius: 6px;
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
@@ -342,11 +342,11 @@ footer {
 			box-shadow: inset 0 1px 1px rgba(76,107,153,0.15),0 1px 0 rgba(255,255,255,0),0 0 6px #326cc0;
 		}
 
-	#quantityContainer {
+	.quantityContainer {
 		margin: 27px 0;
 	}
 
-	#quantityContainer > div {
+	.quantityContainer > div {
 		display: inline-block;
 		margin: 0 15px;
 		background: white;
@@ -380,7 +380,7 @@ footer {
 		border-radius: 4px;
 	}
 
-	#quantityContainer .icon-navigation-black {
+	.quantityContainer .icon-navigation-black {
 		vertical-align: middle;
 		position: absolute;
 		top: 0;
@@ -390,11 +390,11 @@ footer {
 		margin: auto;
 	}
 
-	#quantityContainer > div:not(#quantity) {
+	.quantityContainer > div:not(.qVal) {
 		cursor: pointer;
 	}
 
-	#quantityContainer > div:not(#quantity):active, #quantityContainer > div:not(#quantity):focus {
+	.quantityContainer > div:not(.qVal):active, .quantityContainer > div:not(.qVal):focus {
 		border-color: #7caadd;
 		outline: 0;
 		-webkit-box-shadow: inset 0 1px 1px rgba(76,107,153,0.15),0 1px 0 rgba(255,255,255,0),0 0 6px #326cc0;
@@ -411,7 +411,7 @@ footer {
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
-	#quantity p {
+	.qVal p {
 		font-size: 35px;
 		margin: 0;
 		line-height: 50px;
