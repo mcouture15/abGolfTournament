@@ -150,12 +150,12 @@ $(function() {
 
 	function plus(e, val) {
 		$(e + ' p').text(val + 1);
-		if (val == 1) $(e).prev().removeClass('disabled');
+		if (val == 0) $(e).prev().removeClass('disabled');
 	}
 
 	function minus(e, val) {
 		$(e + ' p').text(val - 1);
-		if (val == 2) $(e).prev().addClass('disabled');
+		if (val == 1) $(e).prev().addClass('disabled');
 	}
 
 	function validateFields() {
