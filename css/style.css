@@ -512,6 +512,10 @@ footer {
 	box-shadow: none !important;
 }
 
+button.disabled {
+	background: #aaa !important;
+}
+
 #spinner {
 	height: 100%;
 	width: 100%;

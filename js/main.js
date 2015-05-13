@@ -18,7 +18,8 @@ $(function() {
 			image: '/img/documentation/checkout/marketplace.png',
 			allowRememberMe: false,
 			currency: 'cad',
-			token: chargeCard
+			token: chargeCard,
+			panelLabel: "Pay {{amount}}"
 		});
 
 		// Close Checkout on page navigation
@@ -130,15 +131,16 @@ $(function() {
 					$('#purchaseContent').removeClass('shake');
 				}, 401);
 			} else {
-				q = parseInt($('#quantity p').text());
-				amount = Math.round(100 * ((45 + 1.35)*q + 0.3));
+				qGolf = parseInt($('#golf p').text());
+				qNoGolf = parseInt($('#noGolf p').text());
+				amount = Math.round(100 * ((45 + 1.35)*qGolf + (30 + 1.35)*qNoGolf + 0.3));
 				firstName = $('#firstName').val();
 				lastName = $('#lastName').val();
 
 				handler.open({
 					amount: amount,
 					currency: 'cad',
-					description: q + ' Ticket' + (q > 1 ? 's' : '') + ' @ $45 each + Service Charge',
+					// description: qGolf + ' Ticket' + (q > 1 ? 's' : '') + ' @ $45 each + Service Charge',
 					name: 'AB Memorial Golf Tournament'
 				});
 				e.preventDefault();
@@ -150,12 +152,20 @@ $(function() {
 
 	function plus(e, val) {
 		$(e + ' p').text(val + 1);
-		if (val == 0) $(e).prev().removeClass('disabled');
+		if (val == 0) {
+			$(e).prev().removeClass('disabled');
+			$('#purchase').removeClass('disabled').attr('disabled', false);
+		}
 	}
 
 	function minus(e, val) {
 		$(e + ' p').text(val - 1);
-		if (val == 1) $(e).prev().addClass('disabled');
+		if (val == 1) {
+			$(e).prev().addClass('disabled');
+			if ($('.quantityChange.noLeftMargin.disabled').length == 2) {
+				$('#purchase').addClass('disabled').attr('disabled', true);
+			}
+		}
 	}
 
 	function validateFields() {
