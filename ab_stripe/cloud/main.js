@@ -13,10 +13,11 @@ function stripe_charge(req, res) {
 		email: req.params.email,
 		firstName: req.params.firstName,
 		lastName: req.params.lastName,
-		quantity: req.params.quantity || 1,
+		quantityGolf: req.params.quantityGolf || 0,
+		quantityNoGolf: req.params.quantityNoGolf || 0,
 		token: req.params.token
 	}
-
+	console.log(opts);
 	Stripe.Charges.create({
 		amount: opts.amount,
 		currency: 'cad',
@@ -27,17 +28,21 @@ function stripe_charge(req, res) {
 			email: opts.email,
 			firstName: opts.firstName,
 			lastName: opts.lastName,
-			quantity: opts.quantity,
+			quantityGolf: parseInt(opts.quantityGolf),
+			quantityNoGolf: parseInt(opts.quantityNoGolf)
 		}
-	},{
+	}, {
 		success: function(httpResponse) {
+			// save successful transaction to Parse
 			var transaction = new Transaction();
-			transaction.save({
-				quantity: opts.quantity,
+			var saveOpts = {
+				quantityGolf: opts.quantityGolf,
+				quantityNoGolf: opts.quantityNoGolf,
 				email: opts.email,
 				firstName: opts.firstName,
 				lastName: opts.lastName
-			}, {
+			}
+			transaction.save(saveOpts, {
 				success: function(transaction) {
 					res.success(transaction.id);
 				},
@@ -46,20 +51,16 @@ function stripe_charge(req, res) {
 					res.success(transaction.id);
 
 					console.log('ERROR', err);
-					var t = new Transaction();
-					transaction.save({
-						quantity: parseInt(opts.quantity),
-						email: opts.email,
-						firstName: opts.firstName,
-						lastName: opts.lastName
-					}), {
+
+					// try again
+					transaction.save(saveOpts, {
 						success: function(httpRequest) {
 							console.log('Second Attempt Successful');
 						},
 						error: function(httpRequest) {
 							console.error('Second Attempt FAILED', transaction.id);
 						}
-					};
+					});
 				}
 			});
 		},

@@ -37,7 +37,8 @@ $(function() {
 			email: token.email,
 			firstName: firstName,
 			lastName: lastName,
-			quantity: q,
+			quantityGolf: qGolf,
+			quantityNoGolf: qNoGolf,
 			token: token.id
 		}, {
 			success: function(res) {
