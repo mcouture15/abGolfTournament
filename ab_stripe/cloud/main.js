@@ -9,12 +9,12 @@ Parse.Cloud.define('charge', function(req, res) {
 
 function stripe_charge(req, res) {
 	var opts = {
-		amount: req.params.amount || 4500,
+		amount: req.params.amount,
 		email: req.params.email,
 		firstName: req.params.firstName,
 		lastName: req.params.lastName,
-		quantityGolf: req.params.quantityGolf || 0,
-		quantityNoGolf: req.params.quantityNoGolf || 0,
+		quantityGolf: req.params.quantityGolf,
+		quantityNoGolf: req.params.quantityNoGolf,
 		token: req.params.token
 	}
 	console.log(opts);
