@@ -925,3 +925,9 @@ button.disabled {
 	left: -5px;
 }
 
+#sslSeal {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 50px;
+}
