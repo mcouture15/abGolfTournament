@@ -1,11 +1,27 @@
 var Stripe = require('stripe');
-var SECRET_KEY = 'sk_test_GwidMDFTUicUGVkBpa8bsFvR';
 var Transaction = Parse.Object.extend('transactions');
 
 Parse.Cloud.define('charge', function(req, res) {
-	Stripe.initialize(SECRET_KEY);
-	stripe_charge(req, res);
+	Parse.Config.get().then(function(config) {
+		var stripe_sk = config.get('stripe_sk');
+		config_cb(req, res, stripe_sk);
+	}, function(err) {
+		console.log('Failed to fetch config');
+		var config = Parse.Config.current();
+		var stripe_sk = config.get('stripe_test_sk');
+		if (stripe_sk == undefined) {
+			res.error('Could not load config.');
+		} else {
+			config_cb(req, res, key);
+		}
+	});
 });
+
+
+function config_cb(req, res, key) {
+	Stripe.initialize(key);
+	stripe_charge(req, res);
+}
 
 function stripe_charge(req, res) {
 	var opts = {
