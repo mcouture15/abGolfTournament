@@ -16,7 +16,7 @@ $(function() {
 
 	function setupStripe() {
 		handler = StripeCheckout.configure({
-			key: 'pk_live_ZOFXuDVRSw0YHU1BlPOvJAhR'
+			key: 'pk_live_ZOFXuDVRSw0YHU1BlPOvJAhR',
 			image: 'images/favicon.ico',
 			allowRememberMe: false,
 			currency: 'cad',
