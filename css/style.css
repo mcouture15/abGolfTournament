@@ -151,16 +151,24 @@ main {
 		}
 
 			#sponsors li > div {
-				height: 200px;
-				width: 200px;
+				height: 150px;
+				width: 300px;
 				border-radius: 40px;
 				margin: auto;
 			}
 
-			#sponsors li > label {
+			#sponsor_1 {
+				background-image: url('../images/sponsor_1.png');
+				background-color: rgba(0,0,0,0.7);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 100%;
+			}
+
+			/*#sponsors li > label {
 				position: relative;
 				top: 10px;
-			}
+			}*/
 
 	#sponsors p, #about p, #contact p {
 		text-align: center;
@@ -942,12 +950,4 @@ button.disabled {
 	right: 0;
 	bottom: 0;
 	margin: 50px;
-}
-
-#sponsor_1 {
-	background-image: url('../images/sponsor_1.png');
-	background-color: rgba(0,0,0,0.7);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100%;
 }
