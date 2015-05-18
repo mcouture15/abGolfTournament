@@ -20,6 +20,7 @@ h1 {
 	padding-top: 75px;
 	margin: 0;
 	margin-bottom: 30px;
+	text-transform: uppercase;
 }
 
 h2 {
@@ -93,26 +94,28 @@ main {
 
 		#home > div {
 			height: 100%;
-			width: 100%
+			width: 100%;
 		}
 			#homePic {
 				position: absolute;
 				top: 0;
-				background: url('../images/hawkridge.jpg') no-repeat center center fixed;
+				background: url('../images/hawkridge_2.jpg') no-repeat center center fixed;
 				-webkit-background-size: cover;
 				-moz-background-size: cover;
 				-o-background-size: cover;
 				background-size: cover;
+				background-position: 0px;
 			}
 			#homeContent {
 				position: absolute;
 				top: 0;
 				height: 100%;
 				text-align: center;
+				background-color: rgba(0,0,0,0.2);
 			}
 				#homeContent > * {
 					position: absolute;
-					top: 40%;
+					top: 44%;
 					left: 0;
 					right: 0;
 				}
