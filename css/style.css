@@ -17,7 +17,6 @@ h1 {
 	color: #000;
 	font-weight: 400;
 	text-align: center;
-	padding-top: 75px;
 	margin: 0;
 	margin-bottom: 30px;
 	text-transform: uppercase;
@@ -85,11 +84,12 @@ main {
 	width: 100%;
 }
 	main > section {
-		margin: 40px 0;
+		padding: 75px;
 	}
 	#home {
 		height: 100%;
 		margin-top: 0;
+		padding: 0;
 	}
 
 		#home > div {
@@ -175,9 +175,13 @@ main {
 		text-align: center;
 	}
 
-	#contact h1 {
-		padding: 0;
+	.greyBackground {
+		background-color: #444 !important;
 	}
+	.greyBackground h1, .greyBackground p {
+		color: #ccc !important;
+	}
+
 
 footer {
 	background-color: rgba(0,0,0,0.7);
@@ -812,6 +816,7 @@ button.disabled {
 
 #gallery {
 	height: 85%;
+	padding: 0;
 }
 	/* SCROLLER */
 	#viewport {
