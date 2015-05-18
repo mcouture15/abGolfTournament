@@ -12,6 +12,8 @@ $(function() {
 		q,
 		t;
 
+	var NUM_PICS = $('#scroller').children().length;
+
 	function setupStripe() {
 		handler = StripeCheckout.configure({
 			key: 'pk_test_TLxz9k2Ooxu3rUL0uNY8ljrH',
@@ -107,8 +109,8 @@ $(function() {
 
 		$('.scroll').on('click', function() {
 			restartTimers();
-			if ($(this).hasClass('scrollLeft')) myScroll.prev();
-			else myScroll.next();
+			if ($(this).hasClass('scrollLeft')) prevCara();
+			else nextCara();
 		});
 	}
 
@@ -211,7 +213,20 @@ $(function() {
 	}
 
 	function nextCara() {
-		myScroll.next();
+		if (myScroll.currentPage.pageX == NUM_PICS - 1) {
+			myScroll.goToPage(0, 0, 2000, IScroll.utils.ease.circular);
+			// myScroll.currentPage.pageX = -1;
+		} else {
+			myScroll.next();
+		}
+	}
+
+	function prevCara() {
+		if (myScroll.currentPage.pageX == 0) {
+			myScroll.goToPage(NUM_PICS - 1, 0, 2000, IScroll.utils.ease.circular);
+		} else {
+			myScroll.prev();
+		}
 	}
 
 	function setupCarousel() {
@@ -221,7 +236,7 @@ $(function() {
 			scrollY: false,
 			momentum: false,
 			snap: true,
-			snapSpeed: 400,
+			snapSpeed: 600,
 			keyBindings: true
 		});
 		carouselInt = setInterval(nextCara, 5000);

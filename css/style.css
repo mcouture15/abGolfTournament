@@ -20,6 +20,7 @@ h1 {
 	padding-top: 75px;
 	margin: 0;
 	margin-bottom: 30px;
+	text-transform: uppercase;
 }
 
 h2 {
@@ -85,7 +86,7 @@ header {
 		#navBar a:hover {
 			color: #27ae60;
 		}
-	
+
 
 main {
 	height: 100%;
@@ -101,26 +102,28 @@ main {
 
 		#home > div {
 			height: 100%;
-			width: 100%
+			width: 100%;
 		}
 			#homePic {
 				position: absolute;
 				top: 0;
-				background: url('../images/hawkridge.jpg') no-repeat center center fixed;
+				background: url('../images/hawkridge_2.jpg') no-repeat center center fixed;
 				-webkit-background-size: cover;
 				-moz-background-size: cover;
 				-o-background-size: cover;
 				background-size: cover;
+				background-position: 0px;
 			}
 			#homeContent {
 				position: absolute;
 				top: 0;
 				height: 100%;
 				text-align: center;
+				background-color: rgba(0,0,0,0.2);
 			}
 				#homeContent > * {
 					position: absolute;
-					top: 40%;
+					top: 44%;
 					left: 0;
 					right: 0;
 				}
@@ -158,38 +161,30 @@ main {
 			#sponsors li > div {
 				height: 200px;
 				width: 200px;
-				background-color: gray;
 				border-radius: 40px;
+				margin: auto;
 			}
-				#sponsors p {
-					text-align: center;
-					width: 75%;
-					margin-left: auto;
-					margin-right: auto;
-					color: gray;
-					line-height: 150%;
-				}
-				
+
+			#sponsors li > label {
+				position: relative;
+				top: 10px;
+			}
+
+	#sponsors p, #about p, #contact p {
+		text-align: center;
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+		color: gray;
+		line-height: 150%;
+	}
+
 	#gallery p {
 		text-align: center;
 	}
 
-	#about p {
-		text-align: center;
-		width: 75%;
-		margin-left: auto;
-		margin-right: auto;
-		color: gray;
-		line-height: 150%;
-	}
-
-	#contact p {
-		text-align: center;
-		width: 75%;
-		margin-left: auto;
-		margin-right: auto;
-		color: gray;
-		line-height: 150%;
+	#contact h1 {
+		padding: 0;
 	}
 
 footer {
@@ -948,4 +943,12 @@ button.disabled {
 	right: 0;
 	bottom: 0;
 	margin: 50px;
+}
+
+#sponsor_1 {
+	background-image: url('../images/sponsor_1.png');
+	background-color: rgba(0,0,0,0.7);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
