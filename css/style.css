@@ -77,7 +77,7 @@ header {
 		#navBar a:hover {
 			color: #27ae60;
 		}
-	
+
 
 main {
 	height: 100%;
@@ -150,18 +150,23 @@ main {
 			#sponsors li > div {
 				height: 200px;
 				width: 200px;
-				background-color: gray;
 				border-radius: 40px;
+				margin: auto;
 			}
-				#sponsors p {
+			/*	#sponsors p {
 					text-align: center;
 					width: 75%;
 					margin-left: auto;
 					margin-right: auto;
 					color: gray;
 					line-height: 150%;
-				}
-				
+				}*/
+
+			#sponsors li > label {
+				position: relative;
+				top: 10px;
+			}
+
 	#gallery p {
 		text-align: center;
 	}
@@ -940,4 +945,12 @@ button.disabled {
 	right: 0;
 	bottom: 0;
 	margin: 50px;
+}
+
+#sponsor_1 {
+	background-image: url('../images/sponsor_1.png');
+	background-color: rgba(0,0,0,0.7);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
