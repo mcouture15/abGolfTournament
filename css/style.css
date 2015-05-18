@@ -153,40 +153,27 @@ main {
 				border-radius: 40px;
 				margin: auto;
 			}
-			/*	#sponsors p {
-					text-align: center;
-					width: 75%;
-					margin-left: auto;
-					margin-right: auto;
-					color: gray;
-					line-height: 150%;
-				}*/
 
 			#sponsors li > label {
 				position: relative;
 				top: 10px;
 			}
 
+	#sponsors p, #about p, #contact p {
+		text-align: center;
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+		color: gray;
+		line-height: 150%;
+	}
+
 	#gallery p {
 		text-align: center;
 	}
 
-	#about p {
-		text-align: center;
-		width: 75%;
-		margin-left: auto;
-		margin-right: auto;
-		color: gray;
-		line-height: 150%;
-	}
-
-	#contact p {
-		text-align: center;
-		width: 75%;
-		margin-left: auto;
-		margin-right: auto;
-		color: gray;
-		line-height: 150%;
+	#contact h1 {
+		padding: 0;
 	}
 
 footer {
