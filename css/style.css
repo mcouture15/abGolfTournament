@@ -817,6 +817,8 @@ button.disabled {
 #gallery {
 	height: 85%;
 	padding: 0;
+	padding-top: 75px;
+	margin-bottom: 75px;
 }
 	/* SCROLLER */
 	#viewport {
