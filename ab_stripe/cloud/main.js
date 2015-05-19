@@ -82,7 +82,9 @@ function stripe_charge(req, res) {
 		},
 		error: function(httpResponse, err) {
 			console.log('FOO \n' + httpResponse + '\n' + err);
-			res.error('Uh oh, something went wrong', httpResponse);
+			res.error('Uh oh, something went wrong. +
+				Your Credit Card has not been charged', httpResponse
+			);
 		}
 	});
 }
