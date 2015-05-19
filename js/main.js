@@ -16,8 +16,8 @@ $(function() {
 
 	function setupStripe() {
 		handler = StripeCheckout.configure({
-			key: 'pk_test_TLxz9k2Ooxu3rUL0uNY8ljrH',
-			image: '/img/documentation/checkout/marketplace.png',
+			key: 'pk_live_ZOFXuDVRSw0YHU1BlPOvJAhR',
+			image: 'images/favicon.ico',
 			allowRememberMe: false,
 			currency: 'cad',
 			token: chargeCard,
@@ -45,7 +45,9 @@ $(function() {
 		}, {
 			success: function(res) {
 				$('#spinner').addClass('hidden').spin(false);
-				toastr.success('Purchase Success! Here is your Transaction ID: ' + res);
+				toastr.success('Purchase Success! Here is your Transaction ID:</br>' +
+					res + '</br></br>Don\'t worry we\'ve also sent you an email.'
+				);
 			},
 			error: function(err) {
 				$('#spinner').addClass('hidden').spin(false);
