@@ -186,6 +186,18 @@ main {
 		color: gray;
 		line-height: 150%;
 	}
+	#schedule {
+		margin-top: 75px;
+	}
+
+	h6 {
+		text-decoration: underline;
+		text-align: center;
+		font-weight: 400;
+		color: #ccc;
+		font-size: 19px;
+		margin: 0;
+	}
 
 	#gallery p {
 		text-align: center;
