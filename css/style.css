@@ -167,7 +167,7 @@ main {
 
 			#sponsor_1 {
 				background-image: url('../images/sponsor_1.png');
-				background-color: rgba(44, 62, 80, 0.7);
+				background-color: rgb(44, 62, 80);
 				background-position: center;
 				background-repeat: no-repeat;
 				background-size: 100%;
