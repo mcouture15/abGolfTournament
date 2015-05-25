@@ -138,14 +138,13 @@ $(function() {
 			} else {
 				qGolf = parseInt($('#golf p').text());
 				qNoGolf = parseInt($('#noGolf p').text());
-				amount = Math.round(100 * ((45 + 1.35)*qGolf + (30 + 1.35)*qNoGolf + 0.3));
+				amount = Math.round(100 * (50*qGolf + 30*qNoGolf));
 				firstName = $('#firstName').val();
 				lastName = $('#lastName').val();
 
 				handler.open({
 					amount: amount,
 					currency: 'cad',
-					// description: qGolf + ' Ticket' + (q > 1 ? 's' : '') + ' @ $45 each + Service Charge',
 					name: 'AB Memorial Golf Tournament'
 				});
 				e.preventDefault();
