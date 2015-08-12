@@ -89,11 +89,15 @@ $(function() {
 				var val = parseInt($('#golf p').text());
 				minus('#golf', val);
 			} else if (e.target.id == 'increaseNoGolf') {
-				var val = parseInt($('#noGolf p').text());
-				plus('#noGolf', val);
+				alert('No tickets available for the dinner');
+				return;
+				// var val = parseInt($('#noGolf p').text());
+				// plus('#noGolf', val);
 			} else if (e.target.id == 'decreaseNoGolf') {
-				var val = parseInt($('#noGolf p').text());
-				minus('#noGolf', val);
+				alert('No tickets available for the dinner');
+				return;
+				// var val = parseInt($('#noGolf p').text());
+				// minus('#noGolf', val);
 			} else if (e.target.children[0].id == 'increaseGolf') {
 				var val = parseInt($('#golf p').text());
 				plus('#golf', val);
@@ -101,11 +105,15 @@ $(function() {
 				var val = parseInt($('#golf p').text());
 				minus('#golf', val);
 			} else if (e.target.children[0].id == 'increaseNoGolf') {
-				var val = parseInt($('#noGolf p').text());
-				plus('#noGolf', val);
+				alert('No tickets available for the dinner');
+				return;
+				// var val = parseInt($('#noGolf p').text());
+				// plus('#noGolf', val);
 			} else {
-				var val = parseInt($('#noGolf p').text());
-				minus('#noGolf', val);
+				alert('No tickets available for the dinner');
+				return;
+				// var val = parseInt($('#noGolf p').text());
+				// minus('#noGolf', val);
 			}
 		});
 
@@ -180,7 +188,7 @@ $(function() {
 		if ($('#lastName').val().trim().length < 2) {
 			invalid.push($('#lastName'));
 		}
-		return invalid
+		return invalid;
 	}
 
 	function setupToastr() {

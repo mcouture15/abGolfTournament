@@ -33,7 +33,13 @@ function stripe_charge(req, res) {
 		quantityNoGolf: req.params.quantityNoGolf,
 		token: req.params.token
 	}
+
 	console.log(opts);
+	if (parseInt(opts.quantityNoGolf) > 0) {
+		res.error('There are no more Banquet-Only Tickets Your' +
+			' Credit Card has not been charged'
+		);
+	}
 	Stripe.Charges.create({
 		amount: opts.amount,
 		currency: 'cad',
