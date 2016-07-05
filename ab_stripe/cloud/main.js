@@ -3,7 +3,7 @@ var Transaction = Parse.Object.extend('transactions');
 
 Parse.Cloud.define('charge', function(req, res) {
 	Parse.Config.get().then(function(config) {
-		var stripe_sk = config.get('stripe_sk');
+		var stripe_sk = config.get('stripe_test_sk');
 		config_cb(req, res, stripe_sk);
 	}, function(err) {
 		console.log('Failed to fetch config');
@@ -30,16 +30,17 @@ function stripe_charge(req, res) {
 		firstName: req.params.firstName,
 		lastName: req.params.lastName,
 		quantityGolf: req.params.quantityGolf,
-		quantityNoGolf: req.params.quantityNoGolf,
+		quantityDinner: req.params.quantityDinner,
+		quantityBoth: req.params.quantityBoth,
 		token: req.params.token
 	}
 
 	console.log(opts);
-	if (parseInt(opts.quantityNoGolf) > 0) {
-		res.error('There are no more Banquet-Only Tickets Your' +
-			' Credit Card has not been charged'
-		);
-	}
+	// if (parseInt(opts.quantityDinner) > 0) {
+	// 	res.error('There are no more Banquet-Only Tickets Your' +
+	// 		' Credit Card has not been charged'
+	// 	);
+	// }
 	Stripe.Charges.create({
 		amount: opts.amount,
 		currency: 'cad',
@@ -51,7 +52,8 @@ function stripe_charge(req, res) {
 			firstName: opts.firstName,
 			lastName: opts.lastName,
 			quantityGolf: parseInt(opts.quantityGolf),
-			quantityNoGolf: parseInt(opts.quantityNoGolf)
+			quantityDinner: parseInt(opts.quantityDinner),
+			quantityBoth: parseInt(opts.quantityBoth)
 		}
 	}, {
 		success: function(httpResponse) {
@@ -59,7 +61,8 @@ function stripe_charge(req, res) {
 			var transaction = new Transaction();
 			var saveOpts = {
 				quantityGolf: opts.quantityGolf,
-				quantityNoGolf: opts.quantityNoGolf,
+				quantityDinner: opts.quantityDinner,
+				quantityBoth: opts.quantityBoth,
 				email: opts.email,
 				firstName: opts.firstName,
 				lastName: opts.lastName
@@ -88,9 +91,7 @@ function stripe_charge(req, res) {
 		},
 		error: function(httpResponse, err) {
 			console.log('FOO \n' + httpResponse + '\n' + err);
-			res.error('Uh oh, something went wrong. +
-				Your Credit Card has not been charged', httpResponse
-			);
+			res.error('Uh oh, something went wrong. Your Credit Card has not been charged', httpResponse);
 		}
 	});
 }

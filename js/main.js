@@ -3,6 +3,10 @@ $(function() {
 		'Yfj9RlamVjaC4pzsmlxpgJDubjrclBF2c1euYJRs',
 		'i1uz71A2H7Vi9oFOWNMS0q6M1YisFLdA90eEFsFT'
 	);
+	var GOLF_PRICE = 42.00,
+		DINNER_PRICE = 18.00,
+		BOTH_PRICE = 55.00;
+
 	var amount,
 		carouselInt,
 		firstName,
@@ -40,7 +44,8 @@ $(function() {
 			firstName: firstName,
 			lastName: lastName,
 			quantityGolf: qGolf,
-			quantityNoGolf: qNoGolf,
+			quantityDinner: qDinner,
+			quantityBoth: qBoth,
 			token: token.id
 		}, {
 			success: function(res) {
@@ -81,39 +86,12 @@ $(function() {
 
 		$('.quantityChange').on('click', function(e) {
 			if (e.target.classList.contains('disabled') || e.target.parentElement.classList.contains('disabled')) return;
+			var element = $(e.target).closest('.quantityContainer').children('.qVal');
 
-			if (e.target.id == 'increaseGolf') {
-				var val = parseInt($('#golf p').text());
-				plus('#golf', val);
-			} else if (e.target.id == 'decreaseGolf') {
-				var val = parseInt($('#golf p').text());
-				minus('#golf', val);
-			} else if (e.target.id == 'increaseNoGolf') {
-				alert('No tickets available for the dinner');
-				return;
-				// var val = parseInt($('#noGolf p').text());
-				// plus('#noGolf', val);
-			} else if (e.target.id == 'decreaseNoGolf') {
-				alert('No tickets available for the dinner');
-				return;
-				// var val = parseInt($('#noGolf p').text());
-				// minus('#noGolf', val);
-			} else if (e.target.children[0].id == 'increaseGolf') {
-				var val = parseInt($('#golf p').text());
-				plus('#golf', val);
-			} else if (e.target.children[0].id == 'decreaseGolf') {
-				var val = parseInt($('#golf p').text());
-				minus('#golf', val);
-			} else if (e.target.children[0].id == 'increaseNoGolf') {
-				alert('No tickets available for the dinner');
-				return;
-				// var val = parseInt($('#noGolf p').text());
-				// plus('#noGolf', val);
+			if (e.target.classList.contains('increase') || $(e.target).find('.increase').length) {
+				plus(element);
 			} else {
-				alert('No tickets available for the dinner');
-				return;
-				// var val = parseInt($('#noGolf p').text());
-				// minus('#noGolf', val);
+				minus(element);
 			}
 		});
 
@@ -145,8 +123,9 @@ $(function() {
 				}, 401);
 			} else {
 				qGolf = parseInt($('#golf p').text());
-				qNoGolf = parseInt($('#noGolf p').text());
-				amount = Math.round(100 * (50*qGolf + 30*qNoGolf));
+				qDinner = parseInt($('#noGolf p').text());
+				qBoth = parseInt($('#both p').text());
+				amount = Math.round(100 * (GOLF_PRICE*qGolf + DINNER_PRICE*qDinner + BOTH_PRICE*qBoth));
 				firstName = $('#firstName').val();
 				lastName = $('#lastName').val();
 
@@ -162,19 +141,24 @@ $(function() {
 			}
 	}
 
-	function plus(e, val) {
-		$(e + ' p').text(val + 1);
+	function plus(e) {
+		var val = $(e).text();
+		$(e).children('p').text(Number(val) + 1);
+		// $(e + ' p').text(val + 1);
 		if (val == 0) {
 			$(e).prev().removeClass('disabled');
 			$('#purchase').removeClass('disabled').attr('disabled', false);
 		}
 	}
 
-	function minus(e, val) {
-		$(e + ' p').text(val - 1);
+	function minus(e) {
+		var val = $(e).text();
+		if (val <= 0) {return;}
+		$(e).children('p').text(Number(val) - 1);
+
 		if (val == 1) {
 			$(e).prev().addClass('disabled');
-			if ($('.quantityChange.noLeftMargin.disabled').length == 2) {
+			if ($('.quantityChange.noLeftMargin.disabled').length == 3) {
 				$('#purchase').addClass('disabled').attr('disabled', true);
 			}
 		}
