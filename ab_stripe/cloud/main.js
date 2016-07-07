@@ -3,12 +3,12 @@ var Transaction = Parse.Object.extend('transactions');
 
 Parse.Cloud.define('charge', function(req, res) {
 	Parse.Config.get().then(function(config) {
-		var stripe_sk = config.get('stripe_test_sk');
+		var stripe_sk = config.get('stripe_sk');
 		config_cb(req, res, stripe_sk);
 	}, function(err) {
 		console.log('Failed to fetch config');
 		var config = Parse.Config.current();
-		var stripe_sk = config.get('stripe_test_sk');
+		var stripe_sk = config.get('stripe_sk');
 		if (stripe_sk == undefined) {
 			res.error('Could not load config.');
 		} else {
