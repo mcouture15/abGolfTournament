@@ -382,7 +382,7 @@ footer {
 
 	#soldOut {
 		position: absolute;
-		font-size: 62px;
+		font-size: 48px;
 		z-index: 10;
 		color: rgba(199, 9, 9, 0.56);
 		transform: rotate(-20deg);
@@ -390,7 +390,7 @@ footer {
 		width: 100%;
 		left: 0;
 		right: 0;
-		bottom: 116px;
+		bottom: 0;
 	}
 
 	.quantityContainer {
@@ -989,4 +989,8 @@ button.disabled {
 .superScript {
 	vertical-align: super;
 	font-size: 15px;
+}
+
+.ticketType {
+	position: relative;
 }

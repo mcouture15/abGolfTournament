@@ -129,6 +129,9 @@ $(function() {
 				firstName = $('#firstName').val();
 				lastName = $('#lastName').val();
 
+				// no more qGolf or qBoth tickets:
+				if (qGolf || qBoth) return;
+
 				handler.open({
 					amount: amount,
 					currency: 'cad',
